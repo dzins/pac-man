@@ -5,8 +5,9 @@ export default Ember.Object.extend(SharedStuff, {
 	direction: 'down',
 	intent: 'down',
 
-	x: 1,
-	y: 2,
+	level: null,
+	x: null,
+	y: null,
 
 	draw(){
 		let x = this.get('x');
@@ -33,7 +34,7 @@ export default Ember.Object.extend(SharedStuff, {
 		let nextX = this.nextCoordinate('x', direction);
 		let nextY = this.nextCoordinate('y', direction);
 
-		return this.get(`grid.${nextY}.${nextX}`);
+		return this.get(`level.grid.${nextY}.${nextX}`);
 	},
 
 	nextCoordinate(coordinate, direction){
@@ -61,5 +62,12 @@ export default Ember.Object.extend(SharedStuff, {
         this.set('y', this.nextCoordinate('y', direction));
 
         this.set('frameCycle', 1);
-    }
+    },
+
+	restart() {
+		this.set('x', this.get('level.startingPac.x'));
+		this.set('y', this.get('level.startingPac.y'));
+  		this.set('frameCycle', 0);
+  		this.set('direction', 'stopped');
+	}
 });
