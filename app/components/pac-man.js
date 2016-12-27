@@ -117,8 +117,8 @@ export default Ember.Component.extend(KeyboardShortcuts, SharedStuff, {
 
 	restart(){
 		if(this.get('lives') <= 0) {
-			this.set('score', 0)
-			this.set('lives', 3)
+			this.set('score', 0);
+			this.set('lives', 3);
 			this.get('level').restart();
 		}
 		this.get('pac').restart();
